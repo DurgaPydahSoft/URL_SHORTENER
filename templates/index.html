@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/bannnu-modified.png" type="image/x-icon">
+    <title>URL Shortener - Durga Prasad Kakileti</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Copy to clipboard functionality
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Copied to clipboard!");
+            }).catch(err => {
+                alert("Failed to copy: " + err);
+            });
+        } 
+    </script>
+</head>
+<body class="bg-blue-100 min-h-screen flex flex-col items-center justify-center">
+
+    <div class="container mx-auto p-6 sm:p-8 md:p-12 lg:p-16 xl:p-20 max-w-5xl bg-white shadow-lg rounded-3xl flex flex-col md:flex-row gap-6">
+
+        <!-- Left Side Image -->
+        <div class="flex-1 flex justify-center items-center">
+            <img src="/static/bot.gif" alt="URL Shortener" class="rounded-lg w-full max-w-md">
+        </div>
+
+        <!-- Right Side Form -->
+        <div class="flex-1 flex flex-col justify-center p-6 bg-gradient-to-b from-blue-400 to-blue-800 rounded-xl shadow-lg">
+            <h1 class="text-3xl sm:text-4xl font-bold text-center text-white mb-6">URL Shortener</h1>
+            
+            <form method="POST" action="/" class="space-y-4">
+                <div class="mb-4">
+                    <label for="long_url" class="block text-sm font-medium text-white">Enter a URL:</label>
+                    <input 
+                        type="url" 
+                        id="long_url" 
+                        name="long_url" 
+                        class="mt-2 p-3 w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none" 
+                        placeholder="https://example.com" 
+                        required>
+                </div>
+                <button 
+                    type="submit" 
+                    class="w-full bg-blue-900 text-white font-semibold py-3 rounded-md hover:from-blue-700 hover:to-purple-700 transition-all">
+                    Shorten URL
+                </button>
+            </form>
+            
+            {% if short_url %}
+            <div class="mt-8 p-6 bg-green-100 border border-green-400 rounded-md text-green-700 text-center shadow-md">
+                <p class="mt-4 text-lg"><strong>Short URL:</strong> 
+                    <a href="{{ short_url }}" class="font-medium text-green-900 hover:underline" target="_blank">{{ short_url }}</a>
+                </p>
+                <!-- Copy Button -->
+                <button 
+                    onclick="copyToClipboard('{{ short_url }}')" 
+                    class="mt-4 bg-blue-500 text-white py-2 px-5 rounded-md hover:bg-blue-600 transition duration-300">
+                    Copy to Clipboard
+                </button>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="flex justify-center items-center py-6 text-sm text-gray-600">
+        &copy; Durga Prasad Kakileti. All rights reserved.
+    </div>
+</body>
+</html>
