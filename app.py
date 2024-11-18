@@ -29,7 +29,7 @@ def home():
         session['last_short_url'] = short_url
         session['last_long_url'] = long_url
         
-        return render_template('index.html', short_url=request.host_url + short_url, long_url=long_url)
+        return render_template('index.html', short_url= short_url, long_url=long_url)
     
     # Display the previously generated short URL from session if available
     previous_short_url = session.get('last_short_url')
