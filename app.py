@@ -35,7 +35,7 @@ def home():
     previous_short_url = session.get('last_short_url')
     previous_long_url = session.get('last_long_url')
     if previous_short_url and previous_long_url:
-        return render_template('index.html', short_url=request.host_url + previous_short_url, long_url=previous_long_url)
+        return render_template('index.html', short_url= previous_short_url, long_url=previous_long_url)
     
     return render_template('index.html')
 
